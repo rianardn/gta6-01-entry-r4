@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solara Bay — an open-world crime game</title>
+<style>
+  html, body { margin: 0; padding: 0; overflow: hidden; background: #0a0e18; height: 100%; }
+  #game { display: block; width: 100vw; height: 100vh; cursor: crosshair; }
+  #fallback { position: fixed; inset: 0; display: none; place-items: center; color: #fff;
+    font: 16px sans-serif; text-align: center; padding: 20px; }
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="fallback"><p>Solara Bay needs JavaScript and a modern desktop browser.<br>
+WASD move/drive · E enter car · mouse aim · click shoot · Shift run · Space handbrake · Esc pause</p></div>
+<script type="module" src="./src/main.js"></script>
+<script>
+  window.addEventListener('error', function () {
+    document.getElementById('fallback').style.display = 'grid';
+  });
+</script>
+</body>
+</html>
