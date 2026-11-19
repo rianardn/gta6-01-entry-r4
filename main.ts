@@ -12,6 +12,12 @@ import { buildDossier } from './vendor/makefun-game.ts';
 const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
+// Fail loudly instead of handing in a dossier with no screenshots: the judge
+// reads the game through its screenshots, so an entry without them is dead.
+if (!existsSync(join(here, 'screenshots')) || !existsSync(join(here, 'game', 'index.html'))) {
+  throw new Error('Solara Bay: game/index.html or screenshots/ is missing — nothing to hand in');
+}
+
 mkdirSync(out, { recursive: true });
 cpSync(join(here, 'game'), join(out, 'game'), { recursive: true });
 mkdirSync(join(out, 'screenshots'), { recursive: true });
